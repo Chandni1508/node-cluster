@@ -1,7 +1,3 @@
-Here’s a complete and professional **README.md** for your Node.js **Clustering + Worker Threads** project with detailed logging and debugging instructions.
-
----
-
 # 🚀 Node.js Clustering + Worker Threads in TypeScript
 
 This project demonstrates how to scale a **Node.js application** using **Clustering** and offload **CPU-intensive tasks** using **Worker Threads**, all written in **TypeScript**.
