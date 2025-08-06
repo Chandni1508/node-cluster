@@ -1,0 +1,145 @@
+Here’s a complete and professional **README.md** for your Node.js **Clustering + Worker Threads** project with detailed logging and debugging instructions.
+
+---
+
+# 🚀 Node.js Clustering + Worker Threads in TypeScript
+
+This project demonstrates how to scale a **Node.js application** using **Clustering** and offload **CPU-intensive tasks** using **Worker Threads**, all written in **TypeScript**.
+
+---
+
+## 📌 Features
+
+* ✅ Efficient handling of **high I/O traffic** with **Cluster module**.
+* ✅ Offload **CPU-bound computations** (e.g., summing numbers) to **Worker Threads**.
+* ✅ Tagged logs for clarity: logs include `process.pid` and thread type.
+* ✅ Clean TypeScript structure with logging and error handling.
+* ✅ Debug-friendly setup (supports VSCode & Chrome DevTools).
+
+---
+
+## 🛠️ Project Structure
+
+```
+/src
+  ├── index.ts         # Cluster setup + HTTP server + Worker Thread trigger
+  └── workerTask.ts    # Worker Thread logic (e.g., sum 1..N)
+
+tsconfig.json          # TypeScript configuration
+package.json           # Scripts and dependencies
+```
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone and Install Dependencies
+
+```bash
+git clone <repo-url>
+cd node-cluster-worker-ts
+npm install
+```
+
+### 2. Build TypeScript
+
+```bash
+npx tsc
+```
+
+### 3. Run the Server
+
+```bash
+node dist/index.js
+```
+
+---
+
+## 🔍 How It Works
+
+| Component      | Role                                                                 |
+| -------------- | -------------------------------------------------------------------- |
+| Cluster Module | Forks multiple worker processes to utilize all CPU cores             |
+| Worker Threads | Handles CPU-heavy computation in parallel inside each worker process |
+| HTTP Endpoint  | `/compute?num=N` — computes sum from 1 to N using a Worker Thread    |
+
+---
+
+## 🌐 API Usage
+
+### Compute Sum (CPU task)
+
+```
+GET http://localhost:3000/compute?num=100000000
+```
+
+### Default Response
+
+```
+Result: 5000000050000000, computed by worker thread on process 12345
+```
+
+---
+
+## 🧵 Logging & Debugging Guide
+
+### Logging:
+
+* Logs are tagged with `[Main pid]` or `[Worker pid]`.
+* Logs track:
+
+  * Worker start/exit
+  * Task received
+  * Task completion or errors
+
+### Debugging (VSCode / Chrome):
+
+1. Run with Node Inspector:
+
+   ```bash
+   node --inspect-brk dist/index.js
+   ```
+
+2. Open Chrome:
+
+   ```
+   chrome://inspect
+   ```
+
+3. OR Setup in VSCode:
+
+   ```json
+   {
+     "type": "node",
+     "request": "launch",
+     "name": "Debug Cluster + Worker",
+     "program": "${workspaceFolder}/dist/index.js",
+     "autoAttachChildProcesses": true
+   }
+   ```
+
+---
+
+## ⚠️ Known Limitations
+
+| Module         | Limitation                                                              |
+| -------------- | ----------------------------------------------------------------------- |
+| Cluster        | No shared memory; needs Redis/DB for shared state across processes      |
+| Worker Threads | Thread pooling not built-in; creating thread per request is inefficient |
+
+### Solutions:
+
+* Use **Redis** or **Postgres** for shared session/cache.
+* Use libraries like **workerpool** or **poolifier** for thread pooling.
+
+---
+
+## 📜 License
+
+MIT License.
+
+---
+
+## 👩‍💻 Author
+
+Chandni Saini
