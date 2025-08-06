@@ -1,0 +1,8 @@
+{
+    "type": "node",
+    "request": "launch",
+    "name": "Debug with Worker Threads",
+    "program": "${workspaceFolder}/dist/index.js",
+    "autoAttachChildProcesses": true
+  }
+  
